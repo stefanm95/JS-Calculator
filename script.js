@@ -1,21 +1,21 @@
-const calculatorDisplay = document.querySelector("h1");
-const inputBtns = document.querySelectorAll("button");
-const clearBtn = document.getElementById("clear-btn");
+const calculatorDisplay = document.querySelector('h1');
+const inputBtns = document.querySelectorAll('button');
+const clearBtn = document.getElementById('clear-btn');
 
 const calculate = {
-  "/": (firstNumber, secondNumber) => firstNumber / secondNumber,
+  '/': (firstNumber, secondNumber) => firstNumber / secondNumber,
 
-  "*": (firstNumber, secondNumber) => firstNumber * secondNumber,
+  '*': (firstNumber, secondNumber) => firstNumber * secondNumber,
 
-  "+": (firstNumber, secondNumber) => firstNumber + secondNumber,
+  '+': (firstNumber, secondNumber) => firstNumber + secondNumber,
 
-  "-": (firstNumber, secondNumber) => firstNumber - secondNumber,
+  '-': (firstNumber, secondNumber) => firstNumber - secondNumber,
 
-  "=": (firstNumber, secondNumber) => secondNumber,
+  '=': (firstNumber, secondNumber) => secondNumber,
 };
 
 let firstValue = 0;
-let operatorValue = "";
+let operatorValue = '';
 let awaitingNextValue = false;
 
 function sendNumberValue(number) {
@@ -25,14 +25,13 @@ function sendNumberValue(number) {
   } else {
     const displayValue = calculatorDisplay.textContent;
     calculatorDisplay.textContent =
-      displayValue === "0" ? number : displayValue + number;
+      displayValue === '0' ? number : displayValue + number;
   }
 }
 function addDecimal() {
   //if no oeprator pressed, don't add decimal
-
   if (awaitingNextValue) return;
-  if (!calculatorDisplay.textContent.includes(".")) {
+  if (!calculatorDisplay.textContent.includes('.')) {
     //If no decimal, add one
     calculatorDisplay.textContent = `${calculatorDisplay.textContent}.`;
   }
@@ -59,19 +58,19 @@ function useOperator(operator) {
 //reset display
 function resetAll() {
   firstValue = 0;
-  operatorValue = "";
+  operatorValue = '';
   awaitingNextValue = false;
-  calculatorDisplay.textContent = "0";
+  calculatorDisplay.textContent = '0';
 }
 //Adding event listeners for numbers, operators, decimal buttons
-inputBtns.forEach((inputBtn) => {
+inputBtns.forEach(inputBtn => {
   if (inputBtn.classList.length === 0) {
-    inputBtn.addEventListener("click", () => sendNumberValue(inputBtn.value));
-  } else if (inputBtn.classList.contains("operator")) {
-    inputBtn.addEventListener("click", () => useOperator(inputBtn.value));
-  } else if (inputBtn.classList.contains("decimal")) {
-    inputBtn.addEventListener("click", () => addDecimal());
+    inputBtn.addEventListener('click', () => sendNumberValue(inputBtn.value));
+  } else if (inputBtn.classList.contains('operator')) {
+    inputBtn.addEventListener('click', () => useOperator(inputBtn.value));
+  } else if (inputBtn.classList.contains('decimal')) {
+    inputBtn.addEventListener('click', () => addDecimal());
   }
 });
 //event listener for resetbtn
-clearBtn.addEventListener("click", () => resetAll());
+clearBtn.addEventListener('click', () => resetAll());

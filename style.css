@@ -28,7 +28,7 @@ body {
   margin: 0;
   padding: 25px;
   font-size: 45px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 100px;
   overflow-x: auto;
 }
@@ -55,7 +55,7 @@ button {
   min-height: 50px;
   font-size: 30px;
   font-weight: 100px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -92,6 +92,6 @@ button:focus {
 
 @media screen and (max-width: 600px) {
   .calculator {
-    width: 95%;
+    width: 80%;
   }
 }

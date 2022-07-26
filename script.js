@@ -1,7 +1,8 @@
 const calculatorDisplay = document.querySelector('h1');
 const inputBtns = document.querySelectorAll('button');
 const clearBtn = document.getElementById('clear-btn');
-const clearCurrentBtn = document.querySelector('.clearCurrent');
+
+//calculate first and second values depending on operator
 
 const calculate = {
   '/': (firstNumber, secondNumber) => firstNumber / secondNumber,
@@ -20,10 +21,12 @@ let operatorValue = '';
 let awaitingNextValue = false;
 
 function sendNumberValue(number) {
+  //replace current dispaly value if first value is entered
   if (awaitingNextValue) {
     calculatorDisplay.textContent = number;
     awaitingNextValue = false;
   } else {
+    //if current display value is 0, replace it, if not add number
     const displayValue = calculatorDisplay.textContent;
     calculatorDisplay.textContent =
       displayValue === '0' ? number : displayValue + number;
@@ -33,14 +36,14 @@ function addDecimal() {
   //if no oeprator pressed, don't add decimal
   if (awaitingNextValue) return;
   if (!calculatorDisplay.textContent.includes('.')) {
-    //If no decimal, add one
+    //if no decimal, add one
     calculatorDisplay.textContent = `${calculatorDisplay.textContent}.`;
   }
 }
 //ready for next value, store operator
 function useOperator(operator) {
   const currentValue = Number(calculatorDisplay.textContent);
-  //prevent multiple operators
+  //prevent multiple operators and update current operator
   if (operatorValue && awaitingNextValue) {
     operatorValue = operator;
     return;
@@ -51,7 +54,7 @@ function useOperator(operator) {
   } else {
     const calculation = calculate[operatorValue](firstValue, currentValue);
     calculatorDisplay.textContent = calculation.toLocaleString(undefined, {
-      maximmumFractionDigits: 2,
+      maximumFractionDigits: 2,
       minimumFractionDigits: 0,
     });
     firstValue = calculation;
@@ -66,12 +69,7 @@ function resetAll() {
   awaitingNextValue = false;
   calculatorDisplay.textContent = '0';
 }
-// reset current
-function resetCurrent() {
-  calculatorDisplay.textContent = '0';
-  awaitingNextValue = true;
-}
-//Adding event listeners for numbers, operators, decimal buttons
+//adding event listeners for numbers, operators, decimal buttons
 inputBtns.forEach(inputBtn => {
   if (inputBtn.classList.length === 0) {
     inputBtn.addEventListener('click', () => sendNumberValue(inputBtn.value));
@@ -83,10 +81,9 @@ inputBtns.forEach(inputBtn => {
 });
 //event listener for resetbtn
 clearBtn.addEventListener('click', () => resetAll());
-clearCurrentBtn.addEventListener('click', () => resetCurrent());
 //reset current input using backspace
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Backspace') {
-    resetCurrent();
+    resetAll();
   }
 });

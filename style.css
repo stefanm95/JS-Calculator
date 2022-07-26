@@ -9,6 +9,25 @@ body {
   justify-content: center;
   align-items: center;
 }
+button {
+  min-height: 50px;
+  font-size: 30px;
+  font-weight: 100px;
+  font-family: 'Roboto', sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: paleturquoise;
+}
+button:hover {
+  filter: brightness(110%);
+}
+button:active {
+  transform: translateY(1px);
+}
+button:focus {
+  outline: none;
+}
 .calculator {
   background-color: white;
   min-width: 300px;
@@ -50,32 +69,10 @@ body {
   grid-gap: 10px;
   padding: 10px;
 }
-
-button {
-  min-height: 50px;
-  font-size: 30px;
-  font-weight: 100px;
-  font-family: 'Roboto', sans-serif;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: paleturquoise;
-}
-button:hover {
-  filter: brightness(110%);
-}
-button:active {
-  transform: translateY(1px);
-}
-button:focus {
-  outline: none;
-}
-
 .operator {
   background: rgba(2, 144, 187, 0.616);
   color: white;
 }
-
 .clear {
   background: rgba(220, 20, 60, 0.849);
   color: white;
@@ -83,10 +80,9 @@ button:focus {
 .clear:hover {
   filter: brightness(90%);
 }
-
 .equal-sign {
   grid-column: -2;
-  grid-row: 2 / span 3;
+  grid-row: 2 / span 4;
   background: rgba(0, 168, 0, 0.555);
 }
 @media screen and (max-width: 600px) {
